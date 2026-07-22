@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="11.5 11.5 25 25"
+     preserveAspectRatio="none"
+     style="display:inline-block; vertical-align:middle;">
+  <title>Booksy</title>
+  <path
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M24.16 14.83V27.5m0 0a5.67 5.67 0 1 1 5.67 5.67c-7.74 0-7.85-7.58-12.79-7.58c-4.25 0-4.54 3.27-4.54 3.27"
+  />
+</svg>

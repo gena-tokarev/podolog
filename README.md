@@ -13,10 +13,14 @@ Open [http://localhost:3000](http://localhost:3000). The root URL redirects to t
 
 ## Launch configuration
 
-Business details and the hero asset path are centralized in `src/config/site.ts`. Set the production site and Booksy URLs through environment variables based on `.env.example`.
+Business details and the hero asset path are centralized in `src/config/site.ts`. All public URLs are configured in `.env`; `.env.example` is the template to copy on a new machine.
 
 - `NEXT_PUBLIC_SITE_URL`: canonical production origin, without a trailing slash
 - `NEXT_PUBLIC_BOOKSY_URL`: public Booksy booking URL
+- `NEXT_PUBLIC_FACEBOOK_URL`: Facebook profile URL
+- `NEXT_PUBLIC_INSTAGRAM_URL`: Instagram profile URL
+- `DOMAIN`: hostname used by Nginx and Let's Encrypt
+- `LETSENCRYPT_EMAIL`: email used for certificate expiry and account notices
 
 Translations are stored as independent JSON dictionaries under `src/i18n/locales`.
 
@@ -29,16 +33,29 @@ cp .env.example .env
 docker compose up --build -d
 ```
 
-Open [http://localhost](http://localhost). Check container status or logs with:
+Before a certificate is issued, the site remains available over HTTP. Check container status or logs with:
 
 ```bash
 docker compose ps
 docker compose logs -f
 ```
 
-Stop the stack with `docker compose down`. If port 80 is already occupied, change `"80:80"` to `"8080:80"` in `compose.yaml` and open `http://localhost:8080`.
+Stop the stack with `docker compose down`. Ports 80 and 443 must be publicly reachable for the production HTTPS setup.
 
-`NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_BOOKSY_URL` are passed into the image at build time. Rebuild the image after changing either value.
+The public site, Booksy, Facebook, and Instagram URLs are passed into the image at build time. Rebuild the image after changing any of them. Until the social URLs are provided, their buttons remain visibly disabled and do not navigate away from the page.
+
+## HTTPS with Let's Encrypt
+
+The Compose stack includes Nginx and Certbot. Nginx serves the ACME validation path over HTTP, redirects normal traffic to HTTPS after a certificate exists, and reloads periodically so renewed certificates are picked up. Certbot checks for renewals twice per day.
+
+First, point the domain's DNS `A` record to the server's public IPv4 address. Add an `AAAA` record only if the server has working public IPv6. Make sure inbound TCP ports 80 and 443 are open. Then run on the production server:
+
+```bash
+docker compose up --build -d
+./scripts/enable-https.sh
+```
+
+The certificate is stored in the `letsencrypt` Docker volume and survives container recreation. Do not repeatedly run the activation script before DNS is correct, because Let's Encrypt applies issuance rate limits.
 
 ### Host-installed Nginx alternative
 
@@ -55,4 +72,4 @@ sudo systemctl reload nginx
 
 Remove or adjust another `default_server` configuration if Nginx reports a duplicate default server. Once DNS is configured, replace `server_name _;` with the production domain. Run the built application with `npm run build` followed by `npm start`, preferably under systemd or another process supervisor.
 
-For a public production deployment, the next step is to add TLS—typically with Certbot—and redirect HTTP port 80 to HTTPS port 443. If Nginx and Next.js run in separate containers, use the Next.js container/service name as the upstream and bind Next.js to `0.0.0.0` inside its container instead of loopback.
+This alternative does not use the containerized Certbot configuration above; TLS must be configured separately on the host.

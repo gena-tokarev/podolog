@@ -1,4 +1,4 @@
-import { fullAddress, siteConfig } from "@/config/site";
+import { mapsUrl, postalStreetAddress, siteConfig } from "@/config/site";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 
@@ -14,11 +14,14 @@ export function StructuredData({ locale, dictionary }: StructuredDataProps) {
     "@id": `${siteConfig.siteUrl}/#business`,
     name: siteConfig.businessName,
     description: dictionary.seo.description,
+    telephone: siteConfig.contact.phone,
     url: `${siteConfig.siteUrl}/${locale}`,
     image: `${siteConfig.siteUrl}${siteConfig.heroImage}`,
+    hasMap: mapsUrl,
     address: {
       "@type": "PostalAddress",
-      streetAddress: siteConfig.address.street,
+      name: siteConfig.address.building,
+      streetAddress: postalStreetAddress,
       postalCode: siteConfig.address.postalCode,
       addressLocality: siteConfig.address.city,
       addressRegion: "Mazowieckie",
@@ -27,7 +30,6 @@ export function StructuredData({ locale, dictionary }: StructuredDataProps) {
     areaServed: {
       "@type": "Place",
       name: "Warszawa Wola",
-      address: fullAddress,
     },
     availableLanguage: ["Polish", "Russian", "English", "Ukrainian"],
     hasOfferCatalog: {
@@ -45,6 +47,10 @@ export function StructuredData({ locale, dictionary }: StructuredDataProps) {
       "@type": "ReserveAction",
       target: siteConfig.bookingUrl,
     },
+    sameAs: [
+      siteConfig.social.facebookUrl,
+      siteConfig.social.instagramUrl,
+    ].filter(Boolean),
   };
 
   return (

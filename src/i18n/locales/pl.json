@@ -1,24 +1,33 @@
 {
   "seo": {
     "title": "Podolog Warszawa Wola | Profesjonalna pielęgnacja stóp",
-    "description": "Podolog na warszawskiej Woli przy ul. Kasprzaka 35. Terapia wrastających paznokci, usuwanie brodawek, pedicure podologiczny oraz opracowanie odcisków i modzeli.",
+    "description": "Podolog na warszawskiej Woli przy ul. Marcina Kasprzaka 31. Terapia wrastających paznokci, opracowanie brodawek, pedicure podologiczny oraz pielęgnacja stóp.",
     "ogTitle": "Podolog Warszawa Wola — zdrowie i komfort Twoich stóp",
-    "ogDescription": "Profesjonalny gabinet podologiczny na Woli. Umów wizytę przy ul. Kasprzaka 35 w Warszawie."
+    "ogDescription": "Profesjonalny gabinet podologiczny na Woli. Umów wizytę przy ul. Marcina Kasprzaka 31 w Warszawie."
   },
   "hero": {
     "eyebrow": "Gabinet podologiczny • Warszawa Wola",
     "heading": "Podolog Warszawa",
-    "intro": "Specjalistyczna, uważna pielęgnacja stóp w spokojnym gabinecie na Woli.",
+    "intro": "Specjalistyczna, uważna pielęgnacja stóp dla Ciebie i Twoich dzieci w spokojnym gabinecie na Woli.",
     "addressLabel": "Adres gabinetu",
+    "address": "Marcina Kasprzaka 31, piętro 2, gabinet 230 (Varsovia Apartamenty)",
+    "mapsLabel": "Otwórz adres Marcina Kasprzaka 31 w Mapach Google — otwiera się w nowej karcie",
     "servicesLabel": "Zakres usług",
     "services": [
       "Terapia wrastających paznokci",
-      "Usuwanie brodawek wirusowych",
+      "Opracowanie brodawek wirusowych",
       "Pedicure podologiczny",
-      "Opracowanie odcisków i modzeli"
+      "Opracowanie odcisków i modzeli",
+      "Opracowanie paznokci zmienionych chorobowo",
+      "Zakładanie systemów korekcyjnych na paznokcie",
+      "Pielęgnacja stopy cukrzycowej",
+      "Zabiegi podologiczne dla dzieci"
     ],
     "cta": "Umów wizytę",
     "ctaLabel": "Umów wizytę online w Booksy — otwiera się w nowej karcie",
+    "callLabel": "Zadzwoń",
+    "facebookLabel": "Facebook — link zostanie dodany wkrótce",
+    "instagramLabel": "Instagram — link zostanie dodany wkrótce",
     "imageAlt": "Jasne, nowoczesne wnętrze gabinetu podologicznego w Warszawie"
   },
   "languageSwitcher": "Zmień język"

@@ -1,24 +1,33 @@
 {
   "seo": {
     "title": "Podologist Warsaw Wola | Professional foot care",
-    "description": "Professional podologist in Warsaw's Wola district at Kasprzaka 35. Ingrown toenail care, wart removal, medical pedicure, corn and callus treatment.",
+    "description": "Professional podologist in Warsaw's Wola district at Marcina Kasprzaka 31. Ingrown toenail care, viral wart care, medical pedicure and specialist foot care.",
     "ogTitle": "Podologist in Warsaw Wola — expert foot care",
-    "ogDescription": "Professional podology practice in Warsaw's Wola district. Book an appointment at Kasprzaka 35."
+    "ogDescription": "Professional podology practice in Warsaw's Wola district. Book an appointment at Marcina Kasprzaka 31."
   },
   "hero": {
     "eyebrow": "Podology practice • Warsaw Wola",
     "heading": "Podologist Warsaw",
-    "intro": "Specialist, considerate foot care in a calm practice in Warsaw's Wola district.",
+    "intro": "Specialist, considerate foot care for you and your children in a calm practice in Warsaw's Wola district.",
     "addressLabel": "Practice address",
+    "address": "Marcina Kasprzaka 31, 2nd floor, office 230 (Varsovia Apartaments)",
+    "mapsLabel": "Open Marcina Kasprzaka 31 in Google Maps — opens in a new tab",
     "servicesLabel": "Services",
     "services": [
       "Ingrown toenail treatment",
-      "Viral wart removal",
+      "Viral wart care",
       "Medical pedicure",
-      "Corn and callus treatment"
+      "Corn and callus treatment",
+      "Care for pathologically altered nails",
+      "Toenail correction systems",
+      "Diabetic foot care",
+      "Podology care for children"
     ],
     "cta": "Book an appointment",
     "ctaLabel": "Book an appointment online with Booksy — opens in a new tab",
+    "callLabel": "Call",
+    "facebookLabel": "Facebook — link coming soon",
+    "instagramLabel": "Instagram — link coming soon",
     "imageAlt": "Bright modern podology practice interior in Warsaw"
   },
   "languageSwitcher": "Change language"

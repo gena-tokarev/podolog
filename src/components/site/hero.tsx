@@ -1,8 +1,11 @@
-import { ArrowUpRight, Check, MapPin } from "lucide-react";
+import { Check, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 
 import { buttonVariants } from "@/components/ui/button";
-import { siteConfig, fullAddress } from "@/config/site";
+import { mapsUrl, siteConfig } from "@/config/site";
+import BooksyIcon from "@/icons/booksy.svg";
+import FacebookIcon from "@/icons/facebook.svg";
+import InstagramIcon from "@/icons/instagram.svg";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
@@ -66,19 +69,28 @@ export function Hero({ locale, dictionary }: HeroProps) {
             {hero.heading}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-sm leading-6 text-white/78 sm:text-base sm:leading-7">
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/78 sm:text-base sm:leading-7">
             {hero.intro}
           </p>
 
-          <div className="mt-5 flex items-center gap-2 text-sm font-medium text-white/92 sm:text-base">
-            <MapPin aria-hidden="true" className="size-4 text-[#e7d7b4]" />
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={hero.mapsLabel}
+            className="mt-5 flex max-w-3xl items-start justify-center gap-2 rounded-sm text-sm font-medium text-white/92 underline decoration-white/35 underline-offset-4 transition-colors hover:text-white hover:decoration-white/75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
+          >
+            <MapPin
+              aria-hidden="true"
+              className="mt-0.5 size-4 shrink-0 text-[#e7d7b4]"
+            />
             <span className="sr-only">{hero.addressLabel}: </span>
-            <address className="not-italic">{fullAddress}</address>
-          </div>
+            <address className="text-balance not-italic">{hero.address}</address>
+          </a>
 
           <div className="my-7 h-px w-16 bg-[#e7d7b4]/60 sm:my-8" />
 
-          <div className="w-full max-w-3xl" aria-labelledby="services-heading">
+          <div className="w-full max-w-[52rem]" aria-labelledby="services-heading">
             <h2 id="services-heading" className="sr-only">
               {hero.servicesLabel}
             </h2>
@@ -97,19 +109,90 @@ export function Hero({ locale, dictionary }: HeroProps) {
             </ul>
           </div>
 
-          <a
-            href={siteConfig.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={hero.ctaLabel}
-            className={cn(
-              buttonVariants({ size: "lg" }),
-              "mt-8 h-14 rounded-full bg-[#f2e2be] px-7 text-sm font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:px-9 sm:text-base",
+          <div className="mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <a
+              href={siteConfig.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={hero.ctaLabel}
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "h-14 w-full rounded-full bg-[#f2e2be] px-7 text-sm font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
+              )}
+            >
+              <BooksyIcon
+                aria-hidden="true"
+                className="size-[1.4rem]"
+              />
+              {hero.cta}
+            </a>
+
+            <a
+              href={siteConfig.contact.phoneHref}
+              aria-label={`${hero.callLabel}: ${siteConfig.contact.phone}`}
+              className={cn(
+                buttonVariants({ size: "lg", variant: "outline" }),
+                "h-14 rounded-full border-white/25 bg-[#10261f]/55 px-5 text-sm font-semibold text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 hover:text-white focus-visible:ring-white/40 sm:h-16 sm:px-6 sm:text-base",
+              )}
+            >
+              <Phone aria-hidden="true" className="size-[1.15rem]" strokeWidth={1.7} />
+              <span>{siteConfig.contact.phone}</span>
+            </a>
+
+            {siteConfig.social.facebookUrl ? (
+              <a
+                href={siteConfig.social.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={hero.facebookLabel}
+                className="grid size-14 place-items-center rounded-full border border-white/25 bg-[#10261f]/55 text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-16"
+              >
+                <FacebookIcon
+                  aria-hidden="true"
+                  className="size-[1.1rem]"
+                />
+              </a>
+            ) : (
+              <span
+                role="link"
+                aria-disabled="true"
+                aria-label={hero.facebookLabel}
+                className="grid size-14 cursor-not-allowed place-items-center rounded-full border border-white/15 bg-[#10261f]/35 text-white/55 backdrop-blur-md sm:size-16"
+              >
+                <FacebookIcon
+                  aria-hidden="true"
+                  className="size-[1.1rem]"
+                />
+              </span>
             )}
-          >
-            {hero.cta}
-            <ArrowUpRight aria-hidden="true" className="ml-1 size-4" />
-          </a>
+
+            {siteConfig.social.instagramUrl ? (
+              <a
+                href={siteConfig.social.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={hero.instagramLabel}
+                className="grid size-14 place-items-center rounded-full border border-white/25 bg-[#10261f]/55 text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-16"
+              >
+                <InstagramIcon
+                  aria-hidden="true"
+                  className="size-[1.1rem]"
+                />
+              </a>
+            ) : (
+              <span
+                role="link"
+                aria-disabled="true"
+                aria-label={hero.instagramLabel}
+                className="grid size-14 cursor-not-allowed place-items-center rounded-full border border-white/15 bg-[#10261f]/35 text-white/55 backdrop-blur-md sm:size-16"
+              >
+                <InstagramIcon
+                  aria-hidden="true"
+                  className="size-[1.1rem]"
+                />
+              </span>
+            )}
+          </div>
         </main>
       </div>
 
