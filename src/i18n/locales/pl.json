@@ -1,0 +1,25 @@
+{
+  "seo": {
+    "title": "Podolog Warszawa Wola | Profesjonalna pielęgnacja stóp",
+    "description": "Podolog na warszawskiej Woli przy ul. Kasprzaka 35. Terapia wrastających paznokci, usuwanie brodawek, pedicure podologiczny oraz opracowanie odcisków i modzeli.",
+    "ogTitle": "Podolog Warszawa Wola — zdrowie i komfort Twoich stóp",
+    "ogDescription": "Profesjonalny gabinet podologiczny na Woli. Umów wizytę przy ul. Kasprzaka 35 w Warszawie."
+  },
+  "hero": {
+    "eyebrow": "Gabinet podologiczny • Warszawa Wola",
+    "heading": "Podolog Warszawa",
+    "intro": "Specjalistyczna, uważna pielęgnacja stóp w spokojnym gabinecie na Woli.",
+    "addressLabel": "Adres gabinetu",
+    "servicesLabel": "Zakres usług",
+    "services": [
+      "Terapia wrastających paznokci",
+      "Usuwanie brodawek wirusowych",
+      "Pedicure podologiczny",
+      "Opracowanie odcisków i modzeli"
+    ],
+    "cta": "Umów wizytę",
+    "ctaLabel": "Umów wizytę online w Booksy — otwiera się w nowej karcie",
+    "imageAlt": "Jasne, nowoczesne wnętrze gabinetu podologicznego w Warszawie"
+  },
+  "languageSwitcher": "Zmień język"
+}

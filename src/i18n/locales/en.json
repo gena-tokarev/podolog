@@ -1,0 +1,25 @@
+{
+  "seo": {
+    "title": "Podologist Warsaw Wola | Professional foot care",
+    "description": "Professional podologist in Warsaw's Wola district at Kasprzaka 35. Ingrown toenail care, wart removal, medical pedicure, corn and callus treatment.",
+    "ogTitle": "Podologist in Warsaw Wola — expert foot care",
+    "ogDescription": "Professional podology practice in Warsaw's Wola district. Book an appointment at Kasprzaka 35."
+  },
+  "hero": {
+    "eyebrow": "Podology practice • Warsaw Wola",
+    "heading": "Podologist Warsaw",
+    "intro": "Specialist, considerate foot care in a calm practice in Warsaw's Wola district.",
+    "addressLabel": "Practice address",
+    "servicesLabel": "Services",
+    "services": [
+      "Ingrown toenail treatment",
+      "Viral wart removal",
+      "Medical pedicure",
+      "Corn and callus treatment"
+    ],
+    "cta": "Book an appointment",
+    "ctaLabel": "Book an appointment online with Booksy — opens in a new tab",
+    "imageAlt": "Bright modern podology practice interior in Warsaw"
+  },
+  "languageSwitcher": "Change language"
+}
