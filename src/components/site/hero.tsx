@@ -59,17 +59,17 @@ export function Hero({ locale, dictionary }: HeroProps) {
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-5xl flex-1 items-center justify-center px-5 py-28 sm:px-8 sm:py-32 lg:px-12">
+      <div className="mx-auto flex w-full max-w-5xl flex-1 items-center justify-center px-5 py-20 sm:px-8 sm:py-32 lg:px-12">
         <main className="flex w-full flex-col items-center text-center">
-          <p className="mb-5 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#e7d7b4] sm:text-xs sm:tracking-[0.3em]">
+          <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#e7d7b4] sm:mb-5 sm:text-xs sm:tracking-[0.3em]">
             {hero.eyebrow}
           </p>
 
-          <h1 className="max-w-4xl font-heading text-[clamp(3.6rem,9vw,7.75rem)] font-medium leading-[0.82] tracking-[-0.045em] text-balance drop-shadow-sm">
+          <h1 className="max-w-4xl font-heading text-[clamp(3.2rem,9vw,7.75rem)] font-medium leading-[0.84] tracking-[-0.045em] text-balance drop-shadow-sm sm:leading-[0.82]">
             {hero.heading}
           </h1>
 
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/78 sm:text-base sm:leading-7">
+          <p className="mt-3 max-w-3xl text-[0.8rem] leading-5 text-white/78 sm:mt-6 sm:text-base sm:leading-7">
             {hero.intro}
           </p>
 
@@ -78,30 +78,34 @@ export function Hero({ locale, dictionary }: HeroProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={hero.mapsLabel}
-            className="mt-5 flex max-w-3xl items-start justify-center gap-2 rounded-sm text-sm font-medium text-white/92 underline decoration-white/35 underline-offset-4 transition-colors hover:text-white hover:decoration-white/75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
+            className="mt-3 max-w-3xl rounded-sm text-[0.8rem] font-medium leading-5 text-white/92 underline decoration-white/35 underline-offset-4 transition-colors hover:text-white hover:decoration-white/75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-5 sm:text-base sm:leading-normal"
           >
-            <MapPin
-              aria-hidden="true"
-              className="mt-0.5 size-4 shrink-0 text-[#e7d7b4]"
-            />
             <span className="sr-only">{hero.addressLabel}: </span>
-            <address className="text-balance not-italic">{hero.address}</address>
+            <address className="text-balance not-italic">
+              <span className="inline-flex items-baseline whitespace-nowrap">
+                <MapPin
+                  aria-hidden="true"
+                  className="mr-2 size-4 translate-y-[0.15em] shrink-0 text-[#e7d7b4]"
+                />
+              </span>
+              {hero.address}
+            </address>
           </a>
 
-          <div className="my-7 h-px w-16 bg-[#e7d7b4]/60 sm:my-8" />
+          <div className="my-4 h-px w-16 bg-[#e7d7b4]/60 sm:my-8" />
 
           <div className="w-full max-w-[52rem]" aria-labelledby="services-heading">
             <h2 id="services-heading" className="sr-only">
               {hero.servicesLabel}
             </h2>
-            <ul className="grid grid-cols-1 gap-x-8 gap-y-2.5 text-left sm:grid-cols-2 sm:gap-y-3">
+            <ul className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-left sm:gap-x-8 sm:gap-y-3">
               {hero.services.map((service) => (
                 <li
                   key={service}
-                  className="flex items-start gap-2.5 text-sm leading-5 text-white/90 sm:text-[0.95rem] sm:leading-6"
+                  className="flex items-start gap-1.5 text-[0.7rem] leading-4 text-white/90 sm:gap-2.5 sm:text-[0.95rem] sm:leading-6"
                 >
-                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full border border-[#e7d7b4]/45 bg-[#e7d7b4]/10 text-[#f5e7c9]">
-                    <Check aria-hidden="true" className="size-3" strokeWidth={2.25} />
+                  <span className="mt-px grid size-4 shrink-0 place-items-center rounded-full border border-[#e7d7b4]/45 bg-[#e7d7b4]/10 text-[#f5e7c9] sm:mt-0.5 sm:size-5">
+                    <Check aria-hidden="true" className="size-2.5 sm:size-3" strokeWidth={2.25} />
                   </span>
                   {service}
                 </li>
@@ -109,7 +113,7 @@ export function Hero({ locale, dictionary }: HeroProps) {
             </ul>
           </div>
 
-          <div className="mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+          <div className="mt-5 flex w-full max-w-4xl flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
             <a
               href={siteConfig.bookingUrl}
               target="_blank"
@@ -117,12 +121,12 @@ export function Hero({ locale, dictionary }: HeroProps) {
               aria-label={hero.ctaLabel}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-14 w-full rounded-full bg-[#f2e2be] px-7 text-sm font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
+                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full bg-[#f2e2be] px-2 text-[0.68rem] font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
               )}
             >
               <BooksyIcon
                 aria-hidden="true"
-                className="size-[1.4rem]"
+                className="size-5 sm:size-[1.4rem]"
               />
               {hero.cta}
             </a>
@@ -132,66 +136,68 @@ export function Hero({ locale, dictionary }: HeroProps) {
               aria-label={`${hero.callLabel}: ${siteConfig.contact.phone}`}
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-14 rounded-full border-white/25 bg-[#10261f]/55 px-5 text-sm font-semibold text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 hover:text-white focus-visible:ring-white/40 sm:h-16 sm:px-6 sm:text-base",
+                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full border-white/25 bg-[#10261f]/55 px-2 text-[0.68rem] font-semibold text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 hover:text-white focus-visible:ring-white/40 sm:h-16 sm:w-auto sm:px-6 sm:text-base",
               )}
             >
-              <Phone aria-hidden="true" className="size-[1.15rem]" strokeWidth={1.7} />
+              <Phone aria-hidden="true" className="size-4 sm:size-[1.15rem]" strokeWidth={1.7} />
               <span>{siteConfig.contact.phone}</span>
             </a>
 
-            {siteConfig.social.facebookUrl ? (
-              <a
-                href={siteConfig.social.facebookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={hero.facebookLabel}
-                className="grid size-14 place-items-center rounded-full border border-white/25 bg-[#10261f]/55 text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-16"
-              >
-                <FacebookIcon
-                  aria-hidden="true"
-                  className="size-[1.1rem]"
-                />
-              </a>
-            ) : (
-              <span
-                role="link"
-                aria-disabled="true"
-                aria-label={hero.facebookLabel}
-                className="grid size-14 cursor-not-allowed place-items-center rounded-full border border-white/15 bg-[#10261f]/35 text-white/55 backdrop-blur-md sm:size-16"
-              >
-                <FacebookIcon
-                  aria-hidden="true"
-                  className="size-[1.1rem]"
-                />
-              </span>
-            )}
+            <div className="flex w-full items-center justify-center gap-2 sm:contents">
+              {siteConfig.social.facebookUrl ? (
+                <a
+                  href={siteConfig.social.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={hero.facebookLabel}
+                  className="grid size-11 place-items-center rounded-full border border-white/25 bg-[#10261f]/55 text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-16"
+                >
+                  <FacebookIcon
+                    aria-hidden="true"
+                    className="size-[1.1rem]"
+                  />
+                </a>
+              ) : (
+                <span
+                  role="link"
+                  aria-disabled="true"
+                  aria-label={hero.facebookLabel}
+                  className="grid size-11 cursor-not-allowed place-items-center rounded-full border border-white/15 bg-[#10261f]/35 text-white/55 backdrop-blur-md sm:size-16"
+                >
+                  <FacebookIcon
+                    aria-hidden="true"
+                    className="size-[1.1rem]"
+                  />
+                </span>
+              )}
 
-            {siteConfig.social.instagramUrl ? (
-              <a
-                href={siteConfig.social.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={hero.instagramLabel}
-                className="grid size-14 place-items-center rounded-full border border-white/25 bg-[#10261f]/55 text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-16"
-              >
-                <InstagramIcon
-                  aria-hidden="true"
-                  className="size-[1.1rem]"
-                />
-              </a>
-            ) : (
-              <span
-                role="link"
-                aria-disabled="true"
-                aria-label={hero.instagramLabel}
-                className="grid size-14 cursor-not-allowed place-items-center rounded-full border border-white/15 bg-[#10261f]/35 text-white/55 backdrop-blur-md sm:size-16"
-              >
-                <InstagramIcon
-                  aria-hidden="true"
-                  className="size-[1.1rem]"
-                />
-              </span>
-            )}
+              {siteConfig.social.instagramUrl ? (
+                <a
+                  href={siteConfig.social.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={hero.instagramLabel}
+                  className="grid size-11 place-items-center rounded-full border border-white/25 bg-[#10261f]/55 text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-16"
+                >
+                  <InstagramIcon
+                    aria-hidden="true"
+                    className="size-[1.1rem]"
+                  />
+                </a>
+              ) : (
+                <span
+                  role="link"
+                  aria-disabled="true"
+                  aria-label={hero.instagramLabel}
+                  className="grid size-11 cursor-not-allowed place-items-center rounded-full border border-white/15 bg-[#10261f]/35 text-white/55 backdrop-blur-md sm:size-16"
+                >
+                  <InstagramIcon
+                    aria-hidden="true"
+                    className="size-[1.1rem]"
+                  />
+                </span>
+              )}
+            </div>
           </div>
         </main>
       </div>
