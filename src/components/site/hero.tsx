@@ -61,15 +61,15 @@ export function Hero({ locale, dictionary }: HeroProps) {
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center justify-center px-5 py-20 sm:px-8 sm:py-32 lg:px-12">
         <main className="flex w-full flex-col items-center text-center">
-          <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#e7d7b4] sm:mb-5 sm:text-xs sm:tracking-[0.3em]">
+          <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#e7d7b4] sm:mb-5 sm:text-xs sm:tracking-[0.3em]">
             {hero.eyebrow}
           </p>
 
-          <h1 className="max-w-4xl font-heading text-[clamp(3.2rem,9vw,7.75rem)] font-medium leading-[0.84] tracking-[-0.045em] text-balance drop-shadow-sm sm:leading-[0.82]">
+          <h1 className="max-w-4xl font-heading text-[clamp(3.4rem,9vw,7.75rem)] font-medium leading-[0.84] tracking-[-0.045em] text-balance drop-shadow-sm sm:leading-[0.82]">
             {hero.heading}
           </h1>
 
-          <p className="mt-3 max-w-3xl text-[0.8rem] leading-5 text-white/78 sm:mt-6 sm:text-base sm:leading-7">
+          <p className="mt-3 max-w-3xl text-sm leading-5 text-white/78 sm:mt-6 sm:text-base sm:leading-7">
             {hero.intro}
           </p>
 
@@ -102,7 +102,7 @@ export function Hero({ locale, dictionary }: HeroProps) {
               {hero.services.map((service) => (
                 <li
                   key={service}
-                  className="flex items-start gap-1.5 text-[0.7rem] leading-4 text-white/90 sm:gap-2.5 sm:text-[0.95rem] sm:leading-6"
+                  className="flex items-start gap-1.5 text-[0.78rem] leading-[1.1rem] text-white/90 sm:gap-2.5 sm:text-[0.95rem] sm:leading-6"
                 >
                   <span className="mt-px grid size-4 shrink-0 place-items-center rounded-full border border-[#e7d7b4]/45 bg-[#e7d7b4]/10 text-[#f5e7c9] sm:mt-0.5 sm:size-5">
                     <Check aria-hidden="true" className="size-2.5 sm:size-3" strokeWidth={2.25} />
@@ -121,7 +121,7 @@ export function Hero({ locale, dictionary }: HeroProps) {
               aria-label={hero.ctaLabel}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full bg-[#f2e2be] px-2 text-[0.68rem] font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
+                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full bg-[#f2e2be] px-2 text-xs font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
               )}
             >
               <BooksyIcon
@@ -136,7 +136,7 @@ export function Hero({ locale, dictionary }: HeroProps) {
               aria-label={`${hero.callLabel}: ${siteConfig.contact.phone}`}
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full border-white/25 bg-[#10261f]/55 px-2 text-[0.68rem] font-semibold text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 hover:text-white focus-visible:ring-white/40 sm:h-16 sm:w-auto sm:px-6 sm:text-base",
+                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full border-white/25 bg-[#10261f]/55 px-2 text-xs font-semibold text-white shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/12 hover:text-white focus-visible:ring-white/40 sm:h-16 sm:w-auto sm:px-6 sm:text-base",
               )}
             >
               <Phone aria-hidden="true" className="size-4 sm:size-[1.15rem]" strokeWidth={1.7} />
