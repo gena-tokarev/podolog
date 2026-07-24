@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { siteConfig } from "@/config/site";
 import BooksyIcon from "@/icons/booksy.svg";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { cn } from "@/lib/utils";
@@ -22,7 +23,9 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
   dictionary,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isReady, setIsReady] = useState(false);
+  const [widgetStatus, setWidgetStatus] = useState<
+    "loading" | "ready" | "fallback"
+  >("loading");
 
   useEffect(() => {
     const hero = document.querySelector<HTMLElement>("[data-site-hero]");
@@ -165,7 +168,13 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
     }
 
     container.replaceChildren();
-    setIsReady(false);
+    setWidgetStatus("loading");
+
+    const readinessTimeout = window.setTimeout(() => {
+      setWidgetStatus((status) =>
+        status === "ready" ? status : "fallback",
+      );
+    }, 7000);
 
     const updateReadiness = () => {
       const booksyButton = container.querySelector<HTMLElement>(
@@ -173,7 +182,8 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
       );
 
       if (booksyButton) {
-        setIsReady(true);
+        window.clearTimeout(readinessTimeout);
+        setWidgetStatus("ready");
       }
     };
 
@@ -196,12 +206,14 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
     script.onload = updateReadiness;
 
     script.onerror = () => {
-      setIsReady(false);
+      window.clearTimeout(readinessTimeout);
+      setWidgetStatus("fallback");
     };
 
     container.appendChild(script);
 
     return () => {
+      window.clearTimeout(readinessTimeout);
       observer.disconnect();
       container.replaceChildren();
     };
@@ -213,8 +225,12 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
         ".booksy-widget-button",
       );
 
-    if (!booksyButton) {
-      console.error("Booksy widget is not ready");
+    if (widgetStatus !== "ready" || !booksyButton) {
+      window.open(
+        siteConfig.bookingUrl,
+        "_blank",
+        "noopener,noreferrer",
+      );
       return;
     }
 
@@ -226,10 +242,9 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
       <button
         type="button"
         aria-label={dictionary.hero.ctaLabel}
-        disabled={!isReady}
         className={cn(
           buttonVariants({ size: "lg" }),
-          "cursor-pointer h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full bg-[#f2e2be] px-2 text-xs font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 disabled:cursor-wait disabled:opacity-75 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
+          "h-12 w-[calc(50%-0.25rem)] min-w-0 cursor-pointer rounded-full bg-[#f2e2be] px-2 text-xs font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
         )}
         onClick={openBooksy}
       >
