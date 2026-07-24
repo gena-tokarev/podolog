@@ -149,3 +149,42 @@
   inset: 0;
   width: 100%;
 }
+
+[data-booksy-loading-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f4eb;
+  color: #17352b;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+[data-booksy-loading-overlay][data-ready] {
+  opacity: 0;
+}
+
+[data-booksy-loading-spinner] {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid rgb(23 53 43 / 18%);
+  border-top-color: #17352b;
+  border-radius: 9999px;
+  animation: booksy-loading-spin 700ms linear infinite;
+}
+
+@keyframes booksy-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

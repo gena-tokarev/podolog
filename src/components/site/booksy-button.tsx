@@ -33,6 +33,80 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
 
     let dialogWasOpen = false;
     let initialScrollY = 0;
+    const readyIframeIds = new Set<string>();
+    const removalTimers = new Set<number>();
+
+    const addLoadingOverlay = (dialog: HTMLElement) => {
+      const iframe = dialog.querySelector<HTMLIFrameElement>("iframe");
+
+      if (
+        !iframe ||
+        readyIframeIds.has(iframe.id) ||
+        dialog.querySelector("[data-booksy-loading-overlay]")
+      ) {
+        return;
+      }
+
+      const overlay = document.createElement("div");
+      const spinner = document.createElement("span");
+      const label = document.createElement("span");
+
+      overlay.setAttribute("data-booksy-loading-overlay", "");
+      overlay.setAttribute("role", "status");
+      overlay.setAttribute("aria-live", "polite");
+      spinner.setAttribute("aria-hidden", "true");
+      spinner.setAttribute("data-booksy-loading-spinner", "");
+      label.textContent = dictionary.hero.booksyLoading;
+      overlay.append(spinner, label);
+      dialog.appendChild(overlay);
+    };
+
+    const removeLoadingOverlay = (dialog: HTMLElement) => {
+      const overlay = dialog.querySelector<HTMLElement>(
+        "[data-booksy-loading-overlay]",
+      );
+
+      if (!overlay) {
+        return;
+      }
+
+      overlay.setAttribute("data-ready", "");
+      const timer = window.setTimeout(() => {
+        overlay.remove();
+        removalTimers.delete(timer);
+      }, 200);
+      removalTimers.add(timer);
+    };
+
+    const handleBooksyMessage = (event: MessageEvent) => {
+      const dialog = document.querySelector<HTMLElement>(
+        ".booksy-widget-dialog",
+      );
+      const iframe = dialog?.querySelector<HTMLIFrameElement>("iframe");
+
+      if (!dialog || !iframe || event.source !== iframe.contentWindow) {
+        return;
+      }
+
+      if (event.origin !== new URL(iframe.src).origin) {
+        return;
+      }
+
+      const message = event.data as {
+        uniqueId?: unknown;
+        events?: { ready?: unknown };
+      } | null;
+
+      if (
+        message?.uniqueId !== iframe.id ||
+        !message.events?.ready
+      ) {
+        return;
+      }
+
+      readyIframeIds.add(iframe.id);
+      removeLoadingOverlay(dialog);
+    };
 
     const syncHeroPosition = () => {
       const dialog = document.querySelector<HTMLElement>(
@@ -50,6 +124,10 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
         hero.setAttribute("data-booksy-dialog-open", "");
       }
 
+      if (isDialogOpen && dialog) {
+        addLoadingOverlay(dialog);
+      }
+
       if (!isDialogOpen && dialogWasOpen) {
         hero.removeAttribute("data-booksy-dialog-open");
         window.scrollTo(0, initialScrollY);
@@ -60,6 +138,7 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
 
     const dialogObserver = new MutationObserver(syncHeroPosition);
 
+    window.addEventListener("message", handleBooksyMessage);
     dialogObserver.observe(document.body, {
       childList: true,
       subtree: true,
@@ -68,10 +147,15 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
     });
 
     return () => {
+      window.removeEventListener("message", handleBooksyMessage);
       dialogObserver.disconnect();
+      removalTimers.forEach((timer) => window.clearTimeout(timer));
+      document
+        .querySelectorAll("[data-booksy-loading-overlay]")
+        .forEach((overlay) => overlay.remove());
       hero.removeAttribute("data-booksy-dialog-open");
     };
-  }, []);
+  }, [dictionary.hero.booksyLoading]);
 
   useEffect(() => {
     const container = containerRef.current;

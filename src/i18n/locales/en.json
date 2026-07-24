@@ -25,6 +25,7 @@
     ],
     "cta": "Book an appointment",
     "ctaLabel": "Book an appointment online with Booksy — opens in a new tab",
+    "booksyLoading": "Loading appointment calendar…",
     "callLabel": "Call",
     "facebookLabel": "Facebook — link coming soon",
     "instagramLabel": "Instagram — link coming soon",
