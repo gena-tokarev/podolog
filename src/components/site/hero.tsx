@@ -120,7 +120,7 @@ export function Hero({ locale, dictionary }: HeroProps) {
             <BooksyButton
               businessId="297783"
               country="pl"
-              lang="pl"
+              lang={locale}
               dictionary={dictionary}
             />
 
