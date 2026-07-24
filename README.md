@@ -48,14 +48,14 @@ The public site, Booksy, Facebook, and Instagram URLs are passed into the image 
 
 The Compose stack includes Nginx and Certbot. Nginx serves the ACME validation path over HTTP, redirects normal traffic to HTTPS after a certificate exists, and reloads periodically so renewed certificates are picked up. Certbot checks for renewals twice per day.
 
-First, point the domain's DNS `A` record to the server's public IPv4 address. Add an `AAAA` record only if the server has working public IPv6. Make sure inbound TCP ports 80 and 443 are open. Then run on the production server:
+First, point the domain's DNS `A` record to the server's public IPv4 address and point `www` to the same server (typically with a `CNAME` to the root domain). Add `AAAA` records only if the server has working public IPv6. Make sure inbound TCP ports 80 and 443 are open. Then run on the production server:
 
 ```bash
 docker compose up --build -d
 ./scripts/enable-https.sh
 ```
 
-The certificate is stored in the `letsencrypt` Docker volume and survives container recreation. Do not repeatedly run the activation script before DNS is correct, because Let's Encrypt applies issuance rate limits.
+The certificate covers both the root domain and its `www` hostname. Nginx permanently redirects `www` requests to the root domain. The certificate is stored in the `letsencrypt` Docker volume and survives container recreation. Do not repeatedly run the activation script before DNS is correct, because Let's Encrypt applies issuance rate limits.
 
 ### Host-installed Nginx alternative
 

@@ -21,6 +21,9 @@ docker compose run --rm --entrypoint certbot certbot certonly \
   --webroot \
   --webroot-path /var/www/certbot \
   --domain "$DOMAIN" \
+  --domain "www.$DOMAIN" \
+  --cert-name "$DOMAIN" \
+  --expand \
   --email "$LETSENCRYPT_EMAIL" \
   --agree-tos \
   --no-eff-email \

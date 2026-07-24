@@ -6,6 +6,22 @@ upstream podolog_nextjs {
 server {
     listen 80;
     listen [::]:80;
+    server_name www.${DOMAIN};
+    server_tokens off;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type text/plain;
+    }
+
+    location / {
+        return 301 http://${DOMAIN}$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
     server_name ${DOMAIN};
     server_tokens off;
 

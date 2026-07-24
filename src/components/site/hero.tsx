@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import { buttonVariants } from "@/components/ui/button";
 import { mapsUrl, siteConfig } from "@/config/site";
-import BooksyIcon from "@/icons/booksy.svg";
 import FacebookIcon from "@/icons/facebook.svg";
 import InstagramIcon from "@/icons/instagram.svg";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -11,6 +10,7 @@ import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
 import { LanguageSwitcher } from "./language-switcher";
+import { BooksyButton } from "./booksy-button";
 
 type HeroProps = {
   locale: Locale;
@@ -21,7 +21,10 @@ export function Hero({ locale, dictionary }: HeroProps) {
   const { hero } = dictionary;
 
   return (
-    <section className="relative isolate flex min-h-[100dvh] w-full overflow-hidden bg-[#15271f] text-white">
+    <section
+      data-site-hero
+      className="relative isolate flex min-h-[100dvh] w-full overflow-hidden bg-[#15271f] text-white"
+    >
       <Image
         src={siteConfig.heroImage}
         alt={hero.imageAlt}
@@ -114,22 +117,12 @@ export function Hero({ locale, dictionary }: HeroProps) {
           </div>
 
           <div className="mt-5 flex w-full max-w-4xl flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
-            <a
-              href={siteConfig.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={hero.ctaLabel}
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "h-12 w-[calc(50%-0.25rem)] min-w-0 rounded-full bg-[#f2e2be] px-2 text-xs font-bold text-[#17352b] shadow-[0_14px_50px_rgba(0,0,0,.24)] transition-all hover:-translate-y-0.5 hover:bg-[#fff2d6] hover:shadow-[0_18px_56px_rgba(0,0,0,.3)] focus-visible:ring-[#f2e2be]/60 sm:h-16 sm:w-auto sm:px-8 sm:text-base",
-              )}
-            >
-              <BooksyIcon
-                aria-hidden="true"
-                className="size-5 sm:size-[1.4rem]"
-              />
-              {hero.cta}
-            </a>
+            <BooksyButton
+              businessId="297783"
+              country="pl"
+              lang="pl"
+              dictionary={dictionary}
+            />
 
             <a
               href={siteConfig.contact.phoneHref}
