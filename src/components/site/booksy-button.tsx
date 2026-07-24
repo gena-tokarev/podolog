@@ -181,13 +181,15 @@ export const BooksyButton: React.FC<BooksyButtonProps> = ({
     observer.observe(container, { childList: true, subtree: true });
 
     const script = document.createElement("script");
+    const instanceId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
     script.type = "text/javascript";
     script.src =
       `https://booksy.com/widget/code.js` +
       `?id=${encodeURIComponent(businessId)}` +
       `&country=${encodeURIComponent(country)}` +
-      `&lang=${encodeURIComponent(lang)}`;
+      `&lang=${encodeURIComponent(lang)}` +
+      `&instance=${encodeURIComponent(instanceId)}`;
 
     script.async = true;
 
