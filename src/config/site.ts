@@ -8,7 +8,6 @@ function requiredPublicUrl(name: string, value: string | undefined) {
 
 export const siteConfig = {
   businessName: "Gabinet Podologiczny Wola",
-  shortName: "Podolog Wola",
   address: {
     street: "Marcina Kasprzaka 31",
     floor: "2",

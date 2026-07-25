@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { mapsUrl, siteConfig } from "@/config/site";
 import FacebookIcon from "@/icons/facebook.svg";
 import InstagramIcon from "@/icons/instagram.svg";
+import PodologyLogo from "@/icons/podology-logo.svg";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
@@ -45,14 +46,12 @@ export function Hero({ locale, dictionary }: HeroProps) {
       <header className="absolute inset-x-0 top-0 z-10">
         <div className="mx-auto flex w-full max-w-[90rem] items-center justify-between gap-4 px-4 py-5 sm:px-8 sm:py-7 lg:px-12">
           <div className="flex items-center gap-3" aria-label={siteConfig.businessName}>
-            <span
+            <PodologyLogo
               aria-hidden="true"
-              className="grid size-10 place-items-center rounded-full border border-white/30 bg-white/10 font-heading text-lg italic backdrop-blur-sm"
-            >
-              P
-            </span>
+              className="size-12 text-[#e7d7b4]"
+            />
             <span className="hidden text-xs font-semibold uppercase tracking-[0.22em] text-white/90 md:block">
-              {siteConfig.shortName}
+              {hero.brandName}
             </span>
           </div>
           <LanguageSwitcher
