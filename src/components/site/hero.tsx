@@ -63,12 +63,15 @@ export function Hero({ locale, dictionary }: HeroProps) {
       </header>
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center justify-center px-5 py-20 sm:px-8 sm:py-32 lg:px-12">
-        <main className="flex w-full flex-col items-center text-center">
+        <main
+          data-hero-copy
+          className="flex w-full flex-col items-center text-center"
+        >
           <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#e7d7b4] sm:mb-5 sm:text-xs sm:tracking-[0.3em]">
             {hero.eyebrow}
           </p>
 
-          <h1 className="max-w-4xl font-heading text-[clamp(3.4rem,9vw,7.75rem)] font-medium leading-[0.84] tracking-[-0.045em] text-balance drop-shadow-sm sm:leading-[0.82]">
+          <h1 className="max-w-4xl font-heading text-[clamp(3.4rem,9vw,7.75rem)] font-medium leading-[0.84] tracking-[-0.045em] text-balance sm:leading-[0.82]">
             {hero.heading}
           </h1>
 
@@ -116,7 +119,10 @@ export function Hero({ locale, dictionary }: HeroProps) {
             </ul>
           </div>
 
-          <div className="mt-5 flex w-full max-w-4xl flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
+          <div
+            data-hero-actions
+            className="mt-5 flex w-full max-w-4xl flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3"
+          >
             <BooksyButton
               businessId="297783"
               country="pl"
