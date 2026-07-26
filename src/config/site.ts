@@ -35,7 +35,11 @@ export const siteConfig = {
     "NEXT_PUBLIC_SITE_URL",
     process.env.NEXT_PUBLIC_SITE_URL,
   ),
-  heroImage: "/images/podology-studio-warsaw.png",
+  heroImage: "/images/podology-practice-warsaw.png",
+  heroImageSize: {
+    width: 1536,
+    height: 1024,
+  },
 } as const;
 
 export const postalStreetAddress = `${siteConfig.address.street}, piętro ${siteConfig.address.floor}, gabinet ${siteConfig.address.office}`;

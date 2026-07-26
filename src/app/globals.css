@@ -183,8 +183,29 @@
   animation: booksy-loading-spin 700ms linear infinite;
 }
 
+[data-hero-background] {
+  animation: hero-image-zoom 24s ease-out forwards;
+  will-change: transform;
+}
+
+@keyframes hero-image-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
 @keyframes booksy-loading-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-background] {
+    animation: none !important;
+    transform: none !important;
   }
 }

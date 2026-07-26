@@ -32,15 +32,16 @@ export function Hero({ locale, dictionary }: HeroProps) {
         fill
         preload
         sizes="100vw"
-        className="-z-30 object-cover object-[66%_center] sm:object-center"
+        data-hero-background
+        className="-z-30 object-cover object-[68%_center] saturate-[0.82] contrast-[0.96] brightness-[0.92] sm:object-center"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(10,27,21,.7)_0%,rgba(17,39,31,.45)_40%,rgba(9,24,19,.78)_100%)] md:bg-[linear-gradient(90deg,rgba(8,25,19,.88)_0%,rgba(13,34,27,.76)_42%,rgba(13,31,25,.3)_77%,rgba(9,22,18,.45)_100%)]"
+        className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(12,30,24,.76)_0%,rgba(17,38,30,.62)_42%,rgba(8,23,18,.84)_100%)] md:bg-[linear-gradient(90deg,rgba(8,27,21,.82)_0%,rgba(12,33,26,.7)_40%,rgba(14,34,27,.58)_72%,rgba(8,25,20,.64)_100%)]"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 opacity-30 [background-image:radial-gradient(circle_at_50%_42%,rgba(255,255,255,.12),transparent_48%)]"
+        className="absolute inset-0 -z-10 [background-image:radial-gradient(circle_at_50%_42%,transparent_22%,rgba(4,16,12,.36)_100%)]"
       />
 
       <header className="absolute inset-x-0 top-0 z-10">

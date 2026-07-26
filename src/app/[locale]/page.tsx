@@ -51,8 +51,8 @@ export async function generateMetadata({
       images: [
         {
           url: siteConfig.heroImage,
-          width: 1672,
-          height: 941,
+          width: siteConfig.heroImageSize.width,
+          height: siteConfig.heroImageSize.height,
           alt: dictionary.hero.imageAlt,
         },
       ],
