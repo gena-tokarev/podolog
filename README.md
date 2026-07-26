@@ -6,6 +6,7 @@ Localized single-page website for a podology practice in Warsaw's Wola district.
 
 ```bash
 npm install
+cp .env.local .env
 npm run dev
 ```
 
@@ -13,7 +14,10 @@ Open [http://localhost:3000](http://localhost:3000). The root URL redirects to t
 
 ## Launch configuration
 
-Business details and the hero asset path are centralized in `src/config/site.ts`. All public URLs are configured in `.env`; `.env.example` is the template to copy on a new machine.
+Business details and the hero asset path are centralized in `src/config/site.ts`.
+`.env.example` defines the complete environment contract. Keep real values in
+the ignored `.env.local` and `.env.prod` profiles, then copy the profile being
+used to `.env`.
 
 - `NEXT_PUBLIC_SITE_URL`: canonical production origin, without a trailing slash
 - `NEXT_PUBLIC_BOOKSY_URL`: public Booksy booking URL
@@ -22,7 +26,7 @@ Business details and the hero asset path are centralized in `src/config/site.ts`
 
 Translations are stored as independent JSON dictionaries under `src/i18n/locales`.
 
-## Nginx reverse proxy
+## Docker deployment
 
 The Docker Compose stack runs Next.js behind an internal Nginx container. Neither
 container publishes a public host port. The Nginx container joins the external
@@ -30,7 +34,7 @@ container publishes a public host port. The Nginx container joins the external
 proxy in the `infra` repository owns ports 80/443 and TLS.
 
 ```bash
-cp .env.example .env
+cp .env.prod .env
 docker network inspect shared_proxy >/dev/null 2>&1 || docker network create shared_proxy
 docker compose up --build -d
 ```
