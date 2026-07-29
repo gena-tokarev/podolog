@@ -35,7 +35,7 @@ export const siteConfig = {
     "NEXT_PUBLIC_SITE_URL",
     process.env.NEXT_PUBLIC_SITE_URL,
   ),
-  heroImage: "/images/podology-practice-warsaw.jpg",
+  heroImage: "/images/podology-practice-warsaw.png",
   heroImageSize: {
     width: 1536,
     height: 1024,
