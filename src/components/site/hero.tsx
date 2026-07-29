@@ -46,7 +46,7 @@ export function Hero({ locale, dictionary }: HeroProps) {
 
       <header className="absolute inset-x-0 top-0 z-10">
         <div className="mx-auto flex w-full max-w-[90rem] items-center justify-between gap-4 px-4 py-5 sm:px-8 sm:py-7 lg:px-12">
-          <div className="flex items-center gap-3" aria-label={siteConfig.businessName}>
+          <div className="flex items-center gap-3">
             <PodologyLogo
               aria-hidden="true"
               className="size-12 text-[#e7d7b4]"
