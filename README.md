@@ -26,29 +26,16 @@ used to `.env`.
 
 Translations are stored as independent JSON dictionaries under `src/i18n/locales`.
 
-## Docker deployment
+## Deployment
 
-The Docker Compose stack runs Next.js behind an internal Nginx container. Neither
-container publishes a public host port. The Nginx container joins the external
-`shared_proxy` Docker network under the `podolog-nginx` alias; the shared public
-proxy in the `infra` repository owns ports 80/443 and TLS.
+GitHub Actions validates the application and builds the production image. The
+public site, Booksy, Facebook, and Instagram URLs are GitHub `production`
+environment variables and are embedded into that image at build time.
 
-```bash
-cp .env.prod .env
-docker network inspect shared_proxy >/dev/null 2>&1 || docker network create shared_proxy
-docker compose up --build -d
-```
+Passing `main` builds are published to `ghcr.io/gena-tokarev/podolog-web`. The
+workflow then commits the immutable image digest to the private sibling `infra`
+repository. Argo CD observes that commit and deploys it to k3s. The application
+workflow has no VPS or Kubernetes credentials.
 
-Check container status or logs with:
-
-```bash
-docker compose ps
-docker compose logs -f
-```
-
-Stop the stack with `docker compose down`. Ports 80 and 443 must be publicly reachable for the production HTTPS setup.
-
-The public site, Booksy, Facebook, and Instagram URLs are passed into the image at build time. Rebuild the image after changing any of them. Until the social URLs are provided, their buttons remain visibly disabled and do not navigate away from the page.
-
-DNS, public routing, the `www` redirect, and Let's Encrypt certificates are
-configured in the sibling `infra` repository.
+DNS, HTTPS, public routing, deployment history, and rollback are managed from
+the private `infra` repository.
