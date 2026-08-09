@@ -1,11 +1,3 @@
-function requiredPublicUrl(name: string, value: string | undefined) {
-  if (!value) {
-    throw new Error(`${name} must be set in .env before building the site.`);
-  }
-
-  return value;
-}
-
 export const siteConfig = {
   businessName: "Gabinet Podologiczny Wola",
   address: {
@@ -24,17 +16,13 @@ export const siteConfig = {
     email: "jadanart@gmail.com",
   },
   social: {
-    facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL,
-    instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+    facebookUrl:
+      "https://www.facebook.com/people/Podolog-Warszawa/61565163163955",
+    instagramUrl: "https://www.instagram.com/podolog_warsaw",
   },
-  bookingUrl: requiredPublicUrl(
-    "NEXT_PUBLIC_BOOKSY_URL",
-    process.env.NEXT_PUBLIC_BOOKSY_URL,
-  ),
-  siteUrl: requiredPublicUrl(
-    "NEXT_PUBLIC_SITE_URL",
-    process.env.NEXT_PUBLIC_SITE_URL,
-  ),
+  bookingUrl:
+    "https://booksy.com/pl-pl/297783_podolog-warszawa-wola_podologia_3_warszawa",
+  siteUrl: "https://podolog-warsaw.pl",
   heroImage: "/images/podology-practice-warsaw.png",
   heroImageSize: {
     width: 1536,
