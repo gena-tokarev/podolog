@@ -17,18 +17,12 @@ jobs:
     name: Validate
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment: production
-    env:
-      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-      NEXT_PUBLIC_BOOKSY_URL: ${{ vars.NEXT_PUBLIC_BOOKSY_URL }}
-      NEXT_PUBLIC_FACEBOOK_URL: ${{ vars.NEXT_PUBLIC_FACEBOOK_URL }}
-      NEXT_PUBLIC_INSTAGRAM_URL: ${{ vars.NEXT_PUBLIC_INSTAGRAM_URL }}
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node.js
-        uses: actions/setup-node@6044e13b5c375eea87dfbd9c2b17b473428c9827 # v6.1.0
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version: 22
           cache: npm
@@ -50,7 +44,6 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    environment: production
     permissions:
       contents: read
       packages: write
@@ -95,11 +88,6 @@ jobs:
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
-          build-args: |
-            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
-            NEXT_PUBLIC_BOOKSY_URL=${{ vars.NEXT_PUBLIC_BOOKSY_URL }}
-            NEXT_PUBLIC_FACEBOOK_URL=${{ vars.NEXT_PUBLIC_FACEBOOK_URL }}
-            NEXT_PUBLIC_INSTAGRAM_URL=${{ vars.NEXT_PUBLIC_INSTAGRAM_URL }}
           cache-from: type=gha,scope=podolog-web
           cache-to: type=gha,mode=max,scope=podolog-web
           provenance: mode=max
@@ -153,7 +141,7 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
         with:
-          app-id: ${{ vars.INFRA_APP_ID }}
+          client-id: ${{ vars.INFRA_APP_CLIENT_ID }}
           private-key: ${{ secrets.INFRA_APP_PRIVATE_KEY }}
           owner: gena-tokarev
           repositories: infra
